@@ -18,5 +18,10 @@ class MainActivity : AppCompatActivity() {
             val startButtonIntent = Intent(this, ExerciseActivity::class.java)
             startActivity(startButtonIntent)
         }
+
+        binding.frameLayoutBmi.setOnClickListener {
+            val intent = Intent(this@MainActivity, BmiActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
