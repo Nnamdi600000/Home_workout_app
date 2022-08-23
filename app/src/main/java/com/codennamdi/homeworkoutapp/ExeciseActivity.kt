@@ -79,6 +79,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setUpExerciseStatusRecyclerView()
     }
 
+    //Function used to display the back btn dialog.
     private fun displayBackBtnCustomDialog() {
         val customDialog = Dialog(this)
         val dialogBinding = CustomDialogBackComfirmationBinding.inflate(layoutInflater)
@@ -246,7 +247,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
      * Function is used to set the progress of the timer using the progress for Exercise View for 30 Seconds
      */
     private fun setExerciseProgressBar() {
-
         binding?.progressBarExercise?.progress = exerciseProgress
 
         exerciseTimer = object : CountDownTimer(exerciseTimerDuration * 1000, 1000) {
@@ -372,5 +372,5 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
         finish()
     }
-    //END
+
 }
