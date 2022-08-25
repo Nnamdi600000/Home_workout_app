@@ -15,7 +15,12 @@
     <string name="no">NO</string>
     <string name="finish">Finish</string>
     <string name="weight_in_kg">Weight (In kg)</string>
+    <string name="weight_in_pounds">Weight (In pounds)</string>
     <string name="height_in_cm">Height (In cm)</string>
+    <string name="feet">Feet</string>
+    <string name="inch">Inch</string>
     <string name="your_bmi">Your BMI</string>
     <string name="calculate">CALCULATE</string>
+    <string name="metric_unit">METRIC UNIT</string>
+    <string name="us_unit">US UNIT</string>
 </resources>

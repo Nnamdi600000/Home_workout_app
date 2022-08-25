@@ -9,6 +9,15 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 class BmiActivity : AppCompatActivity() {
+    // TODO(Step 2 : Added variables for METRIC and US UNITS views and a variable for displaying the current selected view..)
+    companion object {
+        private const val METRIC_UNITS_VIEW = "METRIC_UNIT_VIEW" // Metric Unit View
+        private const val US_UNITS_VIEW = "US_UNIT_VIEW" // US Unit View
+    }
+
+    private var currentVisibleView: String =
+        METRIC_UNITS_VIEW // A variable to hold a value to make a selected view visible
+
     private lateinit var binding: ActivityBmiBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +49,43 @@ class BmiActivity : AppCompatActivity() {
                 Toast.makeText(this@BmiActivity, "Please enter a value", Toast.LENGTH_LONG).show()
             }
         }
+
+        binding.radioButtonMetricUnit.setOnCheckedChangeListener { buttonView, _ ->
+            if (buttonView.isChecked) {
+                makeMetricUnitVisible()
+            }
+        }
+
+        binding.radioButtonUSUnit.setOnCheckedChangeListener { buttonView, _ ->
+            if (buttonView.isChecked) {
+                makeUsUnitVisible()
+            }
+        }
+    }
+
+    private fun makeMetricUnitVisible() {
+        binding.linearLayoutTextField.visibility = View.INVISIBLE
+        binding.textFieldHeightInputLayout.visibility = View.VISIBLE
+        binding.textFieldWeightInputLayout.visibility = View.VISIBLE
+        binding.textFieldWeight2InputLayout.visibility = View.GONE
+
+        binding.textFieldFeet.text!!.clear()
+        binding.textFieldInch.text!!.clear()
+        binding.textFieldWeight2.text!!.clear()
+
+        binding.linearLayout.visibility = View.INVISIBLE
+    }
+
+    private fun makeUsUnitVisible() {
+       binding.linearLayoutTextField.visibility = View.VISIBLE
+        binding.textFieldWeight2InputLayout.visibility = View.VISIBLE
+        binding.textFieldHeightInputLayout.visibility = View.GONE
+        binding.textFieldWeightInputLayout.visibility = View.GONE
+
+        binding.textFieldWeight.text!!.clear()
+        binding.textFieldHeight.text!!.clear()
+
+        binding.linearLayout.visibility = View.INVISIBLE
     }
 
     private fun displayBmiResult(bmi: Float) {
