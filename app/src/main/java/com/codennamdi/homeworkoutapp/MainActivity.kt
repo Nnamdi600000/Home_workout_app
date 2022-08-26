@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setUpClickListeners()
+    }
+
+    private fun setUpClickListeners() {
         binding.frameLayoutStartBtn.setOnClickListener {
             val startButtonIntent = Intent(this, ExerciseActivity::class.java)
             startActivity(startButtonIntent)
@@ -22,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         binding.frameLayoutBmi.setOnClickListener {
             val intent = Intent(this@MainActivity, BmiActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.frameLayoutHistory.setOnClickListener {
+            val intent = Intent(this@MainActivity, )
         }
     }
 }

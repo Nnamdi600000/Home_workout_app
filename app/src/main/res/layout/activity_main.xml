@@ -42,9 +42,9 @@
         android:id="@+id/frame_layout_bmi"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/item_circular_color_accent_background"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frame_layout_start_btn">
 
@@ -61,12 +61,42 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
         android:text="Calculator"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/bmi_calculator_text_size"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frame_layout_bmi" />
+
+    <FrameLayout
+        android:id="@+id/frame_layout_history"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/item_circular_color_accent_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frame_layout_start_btn">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:padding="3dp"
+            android:src="@drawable/history_png" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:text="History"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/bmi_calculator_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frame_layout_bmi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

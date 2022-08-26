@@ -9,15 +9,6 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 class BmiActivity : AppCompatActivity() {
-    // TODO(Step 2 : Added variables for METRIC and US UNITS views and a variable for displaying the current selected view..)
-    companion object {
-        private const val METRIC_UNITS_VIEW = "METRIC_UNIT_VIEW" // Metric Unit View
-        private const val US_UNITS_VIEW = "US_UNIT_VIEW" // US Unit View
-    }
-
-    private var currentVisibleView: String =
-        METRIC_UNITS_VIEW // A variable to hold a value to make a selected view visible
-
     private lateinit var binding: ActivityBmiBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,13 +31,22 @@ class BmiActivity : AppCompatActivity() {
         }
 
         binding.calculateBtn.setOnClickListener {
-            if (metricUnitValue()) {
+            if (metricUnitValid()) {
                 val weightValue: Float = binding.textFieldWeight.text.toString().toFloat()
                 val heightValue: Float = binding.textFieldHeight.text.toString().toFloat() / 100
                 val bmiCalculation = weightValue / (heightValue * heightValue) //Bmi formula.
                 displayBmiResult(bmiCalculation)
+            } else if (usUnitValid()) {
+                val weightInPounds: Float = binding.textFieldWeight2.text.toString().toFloat()
+                val feet: Float = binding.textFieldFeet.text.toString().toFloat()
+                val inch: Float = binding.textFieldInch.text.toString().toFloat()
+
+                //Bmi formula for us unit.
+                val usHeightValue = inch + feet * 12
+                val bmiUsUnit = 703 * (weightInPounds / (usHeightValue * usHeightValue))
+                displayBmiResult(bmiUsUnit)
             } else {
-                Toast.makeText(this@BmiActivity, "Please enter a value", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@BmiActivity, "Please enter a value", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -77,7 +77,7 @@ class BmiActivity : AppCompatActivity() {
     }
 
     private fun makeUsUnitVisible() {
-       binding.linearLayoutTextField.visibility = View.VISIBLE
+        binding.linearLayoutTextField.visibility = View.VISIBLE
         binding.textFieldWeight2InputLayout.visibility = View.VISIBLE
         binding.textFieldHeightInputLayout.visibility = View.GONE
         binding.textFieldWeightInputLayout.visibility = View.GONE
@@ -128,12 +128,28 @@ class BmiActivity : AppCompatActivity() {
         binding.linearLayout.visibility = View.VISIBLE
     }
 
-    private fun metricUnitValue(): Boolean {
+    private fun metricUnitValid(): Boolean {
         var isValid = true
         if (binding.textFieldWeight.text.toString().isEmpty()) {
             isValid = false
         } else if (binding.textFieldHeight.text.toString().isEmpty()) {
             isValid = false
+        }
+        return isValid
+    }
+
+    private fun usUnitValid(): Boolean {
+        var isValid = true
+        when {
+            (binding.textFieldWeight2.text.toString().isEmpty()) -> {
+                isValid = false
+            }
+            (binding.textFieldFeet.text.toString().isEmpty()) -> {
+                isValid = false
+            }
+            (binding.textFieldInch.text.toString().isEmpty()) -> {
+                isValid = false
+            }
         }
         return isValid
     }

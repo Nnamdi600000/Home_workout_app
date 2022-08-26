@@ -117,7 +117,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <LinearLayout
         android:id="@+id/linear_layout_text_field"
         android:layout_width="match_parent"
@@ -125,10 +124,10 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:visibility="invisible"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_field_weight2_input_layout">
+        app:layout_constraintTop_toBottomOf="@id/text_field_weight2_input_layout"
+        tools:visibility="visible">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_field_feet_input_layout"
@@ -183,13 +182,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/linear_layout_calculate_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_field_height_input_layout"
         tools:visibility="visible">
 
         <TextView
@@ -225,13 +225,15 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_layout_calculate_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:orientation="vertical"
         android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_layout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/calculate_btn"
