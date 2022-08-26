@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.frameLayoutHistory.setOnClickListener {
-            val intent = Intent(this@MainActivity, )
+            val intent = Intent(this@MainActivity, HistoryActivity::class.java)
+            startActivity(intent)
         }
     }
 }

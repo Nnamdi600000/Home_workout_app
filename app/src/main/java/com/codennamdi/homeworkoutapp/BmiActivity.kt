@@ -17,10 +17,9 @@ class BmiActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolBarBmi)
-
+        title = "Bmi Calculator" //Making the toolbar title dynamic
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            title = "Bmi Calculator" //Making the toolbar title dynamic
         }
         setUpClickListener()
     }
