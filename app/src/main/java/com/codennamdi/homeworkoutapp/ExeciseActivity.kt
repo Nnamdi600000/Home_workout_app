@@ -11,9 +11,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codennamdi.homeworkoutapp.databinding.ActivityExerciseBinding
 import com.codennamdi.homeworkoutapp.databinding.CustomDialogBackComfirmationBinding
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -33,14 +36,14 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         0 // Variable for the exercise timer progress. As initial value the exercise progress is set to 0. As we are about to start.
 
     // END
-    private var exerciseTimerDuration: Long = 1
+    private var exerciseTimerDuration: Long = 30
 
     // The Variable for the exercise list and current position of exercise here it is -1 as the list starting element is 0
     // START
     private var exerciseList: ArrayList<ExerciseModel>? = null // We will initialize the list later.
     private var currentExercisePosition = -1 // Current Position of Exercise.
 
-    private var restTimeDuration: Long = 1
+    private var restTimeDuration: Long = 10
 
     // END
     // create a binding variable
@@ -50,6 +53,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var restPlayer: MediaPlayer
 
     private lateinit var exerciseAdapter: ExerciseStatusAdapter
+    private lateinit var completedExerciseDao: CompletedExerciseDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +81,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // END
         setupRestView()
         setUpExerciseStatusRecyclerView()
+        completedExerciseDao = (application as CompletedExerciseApp).db.completedExerciseDao()
     }
 
     //Function used to display the back btn dialog.
@@ -281,12 +286,23 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     finish()
                     val intent = Intent(this@ExerciseActivity, ExerciseEndScreen::class.java)
                     startActivity(intent)
+                    addHistoryDetails(completedExerciseDao)
                 }
                 // END
             }
         }.start()
     }
-    // END
+
+    private fun addHistoryDetails(completedExerciseDao: CompletedExerciseDao) {
+        val getCurrentTimeAndDate: Date = Calendar.getInstance().time
+
+        lifecycleScope.launch {
+            completedExerciseDao.insert(
+                CompletedExerciseEntity(timeAndDate = getCurrentTimeAndDate.toString())
+            )
+            Toast.makeText(this@ExerciseActivity, "Added to history", Toast.LENGTH_LONG).show()
+        }
+    }
 
     private fun speakOutExercise(text: String) {
         exerciseTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
@@ -306,7 +322,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     override fun onBackPressed() {
         displayBackBtnCustomDialog()
-       // super.onBackPressed()
+        // super.onBackPressed()
         finish()
         exerciseTextToSpeech.stop()
         exerciseTextToSpeech.shutdown()

@@ -123,7 +123,6 @@ class BmiActivity : AppCompatActivity() {
         binding.calculatedResult.text = bmiValue
         binding.textViewBmiComment.text = bmiLabel
         binding.textViewBmiDescription.text = bmiDescription
-
         binding.linearLayout.visibility = View.VISIBLE
     }
 

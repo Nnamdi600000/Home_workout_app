@@ -16,6 +16,7 @@ class ExerciseStatusAdapter(val items: ArrayList<ExerciseModel>) :
         val textViewItem = binding.textViewItem
     }
 
+    //Returning a view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemExerciseStatusBinding.inflate(
