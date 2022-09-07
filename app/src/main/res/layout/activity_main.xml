@@ -22,11 +22,11 @@
         android:id="@+id/frame_layout_start_btn"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="160dp"
         android:background="@drawable/item_circular_color_accent_border_ripple_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_view_home_workout_app">
+        app:layout_constraintBottom_toTopOf="@id/frame_layout_history">
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,10 +43,10 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/item_circular_color_accent_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frame_layout_start_btn">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,11 +73,11 @@
         android:id="@+id/frame_layout_history"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="80dp"
         android:layout_marginEnd="100dp"
         android:background="@drawable/item_circular_color_accent_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frame_layout_start_btn">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:layout_width="45dp"
